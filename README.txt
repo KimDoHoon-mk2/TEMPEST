@@ -1,8 +1,8 @@
-¡Ø TEMPEST
+@ TEMPEST
 android studio project
 
-¡Ø testserver
+@ testserver
 eclipse project
 
-¡Ø mysql
+@ mysql
 mysql code
