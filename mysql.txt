@@ -1,0 +1,126 @@
+// db 생성
+create database jsptest;
+use jsptest;
+
+// table locker
+create table locker(
+lock_id char(10) primary key,
+state char(1),
+status char(1),
+address char(5),
+name char(20),
+time datetime default current_timestamp
+);
+
+// table people
+create table people(
+ID char(20) primary key,
+Password char(20),
+name char(10),
+number char(12)
+);
+
+// table otp
+create table otp(
+mem_id char(20) primary key,,
+lock_id char(10),
+otp_num char(10),
+time datetime default current_timestamp
+);
+
+// table auth_list
+create table auth_list(
+mem_id char(20),
+lock_id char(10),
+due_date datetime 
+);
+
+//event otp 테이블에 생성되고 난뒤 30초뒤 자동으로 생성된 칼럼을 지워주는 이벤트
+create event delete_otp
+on schedule every 1 second starts current_timestamp
+do
+delete from tempest_db.otp 
+where timestampdiff(second, time, current_timestamp)>=30;
+
+//event 30초 후에 닫히는 이벤트
+create event update_locker_state
+on schedule every 1 second starts current_timestamp
+do
+update jsptest.locker set state="0"
+where timestampdiff(second, time, current_timestamp)>=30;
+
+
+//event 사용기간 만료시 리스트 삭제 이벤트
+create event delete_authlist
+on schedule every 1 second starts current_timestamp
+do
+delete from jsptest.auth_list
+where timestampdiff(second, due_date, current_timestamp)>=0;
+
+//event 인증리스트에 해당 locker가 없을경우 status 바꾸는 이벤트
+create event update_locker_status
+on schedule every 1 second starts current_timestamp
+do
+update jsptest.locker set status=0 
+where jsptest.locker.lock_id not in (select lock_id from jsptest.auth_list);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+문제야 문제
+//결재 이후 권한 테이블에 저장하기 using추가(멤버id, 락커id, period) 이렇게 변수 3개 주면
+insert into useage(mem_id, lock_id, deadline)
+select member._id, locker._id, cast('period' as unsigned)
+from member, locker
+where member._id='멤버id' and locker._id='락커id';
+
+
+(멤버, 락커, 기간) >> 입력하면 
+insert into auth_list(mem_id, lock_id, due_time)
+values('멤버', '락커', 기간)
+이 됫을때 트리거 발동 되서 current_timestamp + 기간
+
+
+// 권한 테이블 생성
+create table auth_list(
+mem_id char(20),
+lock_id char(10),
+due_time datetime 
+);
+
+
+
+create trigger sum_date after insert on auth_list
+for each row begin
+update auth_list set due_time = timestamp(current_timestamp, new.due_time) 
+end;
+
+
+
+
+
+
+
+
+
+
+
+함수(){
+	if(1){
+		열기 set(120);
+	}
+	else{
+		닫기 set(0);
+ 	}
+
+}
