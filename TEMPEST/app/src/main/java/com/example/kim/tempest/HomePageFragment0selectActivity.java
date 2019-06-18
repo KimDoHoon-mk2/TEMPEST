@@ -65,15 +65,6 @@ public class HomePageFragment0selectActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent0 = new Intent(HomePageFragment0selectActivity.this,HomePageActivity.class);
-        intent0.addFlags(intent0.FLAG_ACTIVITY_CLEAR_TOP);
-        intent0.putExtra("SELECT",1);
-        startActivity(intent0);
-        finish();
-    }
-
     void JSONParser(){
         try{
             JSONArray jsonArray = new JSONArray(result);

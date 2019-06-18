@@ -9,28 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:background="@android:color/darker_gray">
-
-            <LinearLayout
-                android:id="@+id/homepage_tablayoutbg"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@android:color/white"
-                android:transformPivotX="0dp"/>
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <LinearLayout
@@ -79,20 +57,11 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
-                <Button
-                    android:id="@+id/homepage_button0"
-                    android:layout_width="100dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/btn_design0"
-                    android:text="회원정보수정"
-                    android:textColor="@android:color/black"
-                    android:textSize="15dp"/>
-
 
                 <Button
                     android:id="@+id/homepage_button1"
                     android:layout_width="100dp"
-                    android:layout_height="30dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/btn_design0"
                     android:text="로그아웃"
@@ -135,7 +104,7 @@
                 android:id="@+id/homepage_tablayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#0000"
+                app:tabBackground="@drawable/tablayout_design0"
                 app:tabGravity="fill"
                 app:tabMode="fixed"
                 app:tabTextColor="@android:color/white"

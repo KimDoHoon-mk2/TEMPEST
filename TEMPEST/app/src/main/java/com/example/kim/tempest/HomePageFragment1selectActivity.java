@@ -112,6 +112,15 @@ public class HomePageFragment1selectActivity extends AppCompatActivity {
         listUpdate();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent intent0 = new Intent(HomePageFragment1selectActivity.this,HomePageActivity.class);
+        intent0.addFlags(intent0.FLAG_ACTIVITY_CLEAR_TOP);
+        intent0.putExtra("SELECT",1);
+        startActivity(intent0);
+        finish();
+    }
+
     void JSONParser(){
         list.clear();
         try{
@@ -336,7 +345,7 @@ public class HomePageFragment1selectActivity extends AppCompatActivity {
                                     toast_pass();
                                     Intent intent0 = new Intent(HomePageFragment1selectActivity.this,HomePageActivity.class);
                                     intent0.addFlags(intent0.FLAG_ACTIVITY_CLEAR_TOP);
-                                    intent0.putExtra("SELECT",2);
+                                    intent0.putExtra("SELECT",1);
                                     startActivity(intent0);
                                     finish();
                                     break;

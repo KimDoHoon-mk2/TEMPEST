@@ -89,7 +89,7 @@ public class OTPActivity extends AppCompatActivity {
                                     timer.cancel();
                                     Intent intent0 = new Intent(OTPActivity.this, HomePageActivity.class);
                                     intent0.addFlags(intent0.FLAG_ACTIVITY_CLEAR_TOP);
-                                    intent0.putExtra("SELECT", 2);
+                                    intent0.putExtra("SELECT", 1);
                                     startActivity(intent0);
                                     break;
                                 case "1":
@@ -110,7 +110,7 @@ public class OTPActivity extends AppCompatActivity {
                                     timer.cancel();
                                     Intent intent0 = new Intent(OTPActivity.this, HomePageActivity.class);
                                     intent0.addFlags(intent0.FLAG_ACTIVITY_CLEAR_TOP);
-                                    intent0.putExtra("SELECT", 2);
+                                    intent0.putExtra("SELECT", 1);
                                     startActivity(intent0);
                                     break;
                                 case "1":
@@ -153,7 +153,7 @@ public class OTPActivity extends AppCompatActivity {
                                     timer.cancel();
                                     Intent intent0 = new Intent(OTPActivity.this, HomePageActivity.class);
                                     intent0.addFlags(intent0.FLAG_ACTIVITY_CLEAR_TOP);
-                                    intent0.putExtra("SELECT", 2);
+                                    intent0.putExtra("SELECT", 1);
                                     startActivity(intent0);
                                     break;
                                 case "1":
@@ -183,7 +183,7 @@ public class OTPActivity extends AppCompatActivity {
                 timer.cancel();
                 Intent intent0 = new Intent(OTPActivity.this,HomePageActivity.class);
                 intent0.addFlags(intent0.FLAG_ACTIVITY_CLEAR_TOP);
-                intent0.putExtra("SELECT",2);
+                intent0.putExtra("SELECT",1);
                 startActivity(intent0);
                 finish();
                 break;

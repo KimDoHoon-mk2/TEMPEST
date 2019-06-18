@@ -135,7 +135,7 @@ public class LoginPageActivity extends AppCompatActivity {
                                         Intent intent0 = new Intent(LoginPageActivity.this, HomePageActivity.class);
                                         intent0.putExtra("ID",ID);
                                         intent0.putExtra("NAME",NAME);
-                                        intent0.putExtra("SELECT",1);
+                                        intent0.putExtra("SELECT",0);
                                         startActivityForResult(intent0,0);
                                         finish();
                                     }

@@ -34,10 +34,9 @@ public class HomePageActivity extends AppCompatActivity {
     private HomePageFragment1 fragment1;
 
     private RelativeLayout relativeLayout;
-    private LinearLayout tabLayoutbg;
     private ViewPager viewPager;
     private TabLayout tabLayout;
-    private Button button0, button1;
+    private Button button1;
     private TextView textView;
 
     private Intent intent;
@@ -56,10 +55,8 @@ public class HomePageActivity extends AppCompatActivity {
 
     void init(){
         relativeLayout = (RelativeLayout) findViewById(R.id.homepage_relativelayout);
-        tabLayoutbg = (LinearLayout) findViewById(R.id.homepage_tablayoutbg);
         viewPager = (ViewPager) findViewById(R.id.homepage_viewpager);
         tabLayout = (TabLayout) findViewById(R.id.homepage_tablayout);
-        button0 = (Button) findViewById(R.id.homepage_button0);
         button1 = (Button) findViewById(R.id.homepage_button1);
         textView = (TextView) findViewById(R.id.homepage_textview0);
 
@@ -78,18 +75,6 @@ public class HomePageActivity extends AppCompatActivity {
 
         TabPagerAdapter pagerAdapter = new TabPagerAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
-        viewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public void transformPage(@NonNull View page, float position) {
-                if(state==1){
-                    tabLayoutbg.setTranslationX(tabLayoutbg.getWidth()*(state-Math.abs(position)));
-                }
-                else{
-                    tabLayoutbg.setTranslationX(tabLayoutbg.getWidth()*(Math.abs(position)));
-                }
-                Log.i("viewPager_value = ",""+position);
-            }
-        });
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -105,12 +90,6 @@ public class HomePageActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
-        button0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog_select();
             }
         });
         button1.setOnClickListener(new View.OnClickListener() {
@@ -156,35 +135,13 @@ public class HomePageActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        state = intent.getIntExtra("SELECT",2);
+        state = intent.getIntExtra("SELECT",1);
         switch (state){
-            case 1:
-                tabLayoutbg.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        ViewGroup.LayoutParams layoutParams =tabLayoutbg.getLayoutParams();
-                        layoutParams.width = relativeLayout.getWidth()/2;
-                        tabLayoutbg.requestLayout();
-                        tabLayoutbg.setTranslationX(0);
-
-                        tabLayoutbg.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    }
-                });
+            case 0:
                 TabLayout.Tab tab0 = tabLayout.getTabAt(0);
                 tab0.select();
                 break;
-            case 2:
-                tabLayoutbg.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        ViewGroup.LayoutParams layoutParams =tabLayoutbg.getLayoutParams();
-                        layoutParams.width = relativeLayout.getWidth()/2;
-                        tabLayoutbg.requestLayout();
-                        tabLayoutbg.setTranslationX(relativeLayout.getWidth()/2);
-
-                        tabLayoutbg.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                    }
-                });
+            case 1:
                 TabLayout.Tab tab1 = tabLayout.getTabAt(1);
                 tab1.select();
                 break;

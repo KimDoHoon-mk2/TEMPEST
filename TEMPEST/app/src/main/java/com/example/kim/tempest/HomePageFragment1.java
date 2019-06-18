@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,6 +32,7 @@ public class HomePageFragment1 extends Fragment {
 
     private TextView textView;
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private LinearLayoutManager llm;
     private HomePageFragment1Adapter adapter;
@@ -60,8 +62,9 @@ public class HomePageFragment1 extends Fragment {
     void init() {
         ID = ((HomePageActivity) getActivity()).ID();
         textView = (TextView) view.findViewById(R.id.homepagefragment1_textview);
-
         recyclerView = (RecyclerView) view.findViewById(R.id.homepagefragment1_recyclerview);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.homepagefragment1_swiperefreshlayout);
+
         llm = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(llm);
 
@@ -85,6 +88,16 @@ public class HomePageFragment1 extends Fragment {
 
         adapter = new HomePageFragment1Adapter(getActivity(), this, list,ID);
         recyclerView.setAdapter(adapter);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                listUpdate();
+                Log.i("swiperefresh","refresh!");
+
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     void JSONParser(){
