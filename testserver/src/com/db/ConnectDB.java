@@ -453,14 +453,9 @@ public class ConnectDB {
             rs = pstmt.executeQuery();
             
             if (rs.next()) {
-                returns = "1";
+                return "1";
             } else {
-                sql2 = "INSERT INTO people VALUES(?,?,NULL,NULL)";
-                pstmt2 = conn.prepareStatement(sql2);
-                pstmt2.setString(1, id);
-                pstmt2.setString(2, pwd);
-                pstmt2.executeUpdate();
-                returns = "0";
+                return "0";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -469,31 +464,33 @@ public class ConnectDB {
             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
             if (conn != null)try {conn.close();    } catch (SQLException ex) {    }
         }
-        return returns;
+        return "2";
     }
     
-    public String connectionDB2(String id, String name, String number) 
+    public String connectionDB2(String id, String pw, String name, String number) 
     {
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(jdbcUrl, userId, userPw);
 
-            sql = "SELECT ID FROM people WHERE ID = ?";
+            sql = "SELECT name FROM people WHERE name = ?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, id);
+            pstmt.setString(1, name);
             rs = pstmt.executeQuery();
             
             if (rs.next()) {
-            	sql2 = "UPDATE people SET name = ?, number = ? WHERE ID = ?";
+                return "1";
+            } else {
+                sql2 = "INSERT INTO people VALUES(?,?,?,?)";
                 pstmt2 = conn.prepareStatement(sql2);
-                pstmt2.setString(1, name);
-                pstmt2.setString(2, number);
-                pstmt2.setString(3, id);
+                pstmt2.setString(1, id);
+                pstmt2.setString(2, pw);
+                pstmt2.setString(3, name);
+                pstmt2.setString(4, number);
+                
                 pstmt2.executeUpdate();
                 
-                returns = "0";
-            } else {
-                returns = "1";
+                return "0";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -502,7 +499,7 @@ public class ConnectDB {
             if (pstmt != null)try {pstmt.close();} catch (SQLException ex) {}
             if (conn != null)try {conn.close();    } catch (SQLException ex) {    }
         }
-        return returns;
+        return "2";
     }
     
     public String loginDB(String id, String pwd) {

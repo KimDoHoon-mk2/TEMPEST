@@ -166,6 +166,13 @@ public class LoginPageActivity extends AppCompatActivity {
             }
         });
 
+        relativeLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hidekeyboard();
+            }
+        });
+
         pref = getSharedPreferences("data", Activity.MODE_PRIVATE);
         ID = pref.getString("saveID",null);
         PW = pref.getString("savePW",null);

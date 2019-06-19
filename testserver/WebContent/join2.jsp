@@ -9,12 +9,14 @@
    
 	request.setCharacterEncoding("euc-kr");
 	String id = request.getParameter("id");
+	String pw = request.getParameter("pw");
    String name = request.getParameter("name");
    String number = request.getParameter("number");
    
    System.out.println("id="+id);
+   System.out.println("pw="+pw);
    System.out.println("name="+name);
    System.out.println("number="+number);
 
-   out.print(conn.connectionDB2(id,name,number));
+   out.print(conn.connectionDB2(id,pw,name,number));
 %>
