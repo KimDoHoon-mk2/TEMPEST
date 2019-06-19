@@ -34,6 +34,7 @@ public class NewID1Activity extends AppCompatActivity {
 
     private Intent intent;
     private String id;
+    private String pw;
 
     private Pattern p = Pattern.compile("^010(\\d{8})$");
     private Matcher m;
@@ -55,6 +56,7 @@ public class NewID1Activity extends AppCompatActivity {
 
         intent = getIntent();
         id = intent.getStringExtra("ID");
+        pw = intent.getStringExtra("PW");
 
         imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         inputFilter = new InputFilter() {
@@ -140,7 +142,7 @@ public class NewID1Activity extends AppCompatActivity {
                 try {
                     hidekeyboard();
                     ServerTrans newInfo = new ServerTrans();
-                    newInfo.newInfo(id,editText0.getText().toString(), editText1.getText().toString());
+                    newInfo.newInfo(id,pw,editText0.getText().toString(), editText1.getText().toString());
                     String result = newInfo.execute().get();
                     //result = "0";
                     switch (result){
@@ -164,8 +166,8 @@ public class NewID1Activity extends AppCompatActivity {
 
     void dialog_pass(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("개인정보");
-        builder.setMessage("등록에 성공하였습니다.");
+        builder.setTitle("회원가입");
+        builder.setMessage("회원가입에 성공하였습니다.");
         builder.setPositiveButton("OK",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -181,8 +183,8 @@ public class NewID1Activity extends AppCompatActivity {
 
     void dialog_fail(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("개인정보");
-        builder.setMessage("이미 있는 번호 입니다");
+        builder.setTitle("회원가입");
+        builder.setMessage("이미 있는 닉네임 입니다");
         builder.setNegativeButton("OK",
                 new DialogInterface.OnClickListener() {
                     @Override

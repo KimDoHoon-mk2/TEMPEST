@@ -181,7 +181,10 @@ public class NewID0Activity extends AppCompatActivity {
                     //result = "0";
                     switch (result){
                         case "0":
-                            dialog_pass();
+                            Intent intent0 = new Intent(NewID0Activity.this,NewID1Activity.class);
+                            intent0.putExtra("ID", editTexts[0].getText().toString());
+                            intent0.putExtra("PW", editTexts[1].getText().toString());
+                            startActivity(intent0);
                             break;
                         case "1":
                             dialog_fail();
@@ -197,21 +200,6 @@ public class NewID0Activity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    void dialog_pass(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("회원가입에 성공하였습니다");
-        builder.setPositiveButton("OK",
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent0 = new Intent(NewID0Activity.this,NewID1Activity.class);
-                        intent0.putExtra("ID", editTexts[0].getText().toString());
-                        startActivity(intent0);
-                    }
-                });
-        builder.show();
     }
 
     void dialog_fail(){

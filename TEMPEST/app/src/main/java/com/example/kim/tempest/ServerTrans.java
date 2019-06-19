@@ -66,8 +66,8 @@ public class ServerTrans extends AsyncTask<Void, Void, String> {
         this.code = "join.jsp";
     }
 
-    public void newInfo(String ID, String NAME, String NUMBER){
-        this.send = "id="+ID+"&name="+NAME+"&number="+NUMBER+"";
+    public void newInfo(String ID, String PW, String NAME, String NUMBER){
+        this.send = "id="+ID+"&pw="+PW+"&name="+NAME+"&number="+NUMBER+"";
         this.code = "join2.jsp";
     }
 
